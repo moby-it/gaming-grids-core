@@ -1,6 +1,6 @@
 {
     "tasks": {
-      "processor": "deno run --allow-read=. --allow-write=. imageProcessor.ts",
-      "migrator": "deno run --allow-read=.  --allow-write=. --allow-net imageMigrator.ts"
+      "filter": "deno run --allow-read=. --allow-write=. imageFilter.ts",
+      "migrate": "deno run --allow-read=.  --allow-write=. --allow-net imageMigrator.ts"
     }
   }
