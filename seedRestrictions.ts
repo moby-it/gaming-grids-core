@@ -1,36 +1,32 @@
-
+import { getSupaBaseClient } from "./supabase.ts";
+import { restriction } from "./types.d.ts";
+import { getRestrictions } from "./utils.ts";
 const { data } = JSON.parse(await Deno.readTextFile('./champion.json'));
 const champions = Object.entries(data).map(hero => hero[1]);
-import {
-    parseDifficultyRestrictions,
-    parsePowerSourceRestrictions,
-    parseTagRestrictions,
-    parseArmorRestrictions,
-    parseHpRestrictions,
-    parseAttackSpeedRestrictions,
-    parseMoveSpeedRestrictions,
-    parseMpRestrictions,
-    parseRangeRestrictions
-} from "./restrictionLogic.ts";
+const restrictions: restriction[] = await getRestrictions(champions);
 
-import { getValidatedInput } from "./transformData.ts";
-import { restriction } from "./types.d.ts";
+async function seedRestrictions(
+    restrictions: restriction[])
+    : Promise<void> {
+    const supabase = await getSupaBaseClient();
+    for (const restriction of restrictions) {
+        const { data } = await supabase.from('restriction').select('hash').eq('name', restriction.name)
+        if (!data?.length) {
 
-export async function parseRestrictions(input: unknown[]): Promise<restriction[]> {
-    const champions = getValidatedInput(input);
-    if (!champions) console.log("No valid input!");
-    const tagRestrictions = await parseTagRestrictions(champions);
-    const difficultyRestrictions = await parseDifficultyRestrictions(champions);
-    const powerSourceRestrictions = await parsePowerSourceRestrictions(champions);
-    const armorRestrictions = await parseArmorRestrictions(champions);
-    const attackSpeedRestrictions = await parseAttackSpeedRestrictions(champions);
-    const hpRestrictions = await parseHpRestrictions(champions);
-    const moveSpeedRestrictions = await parseMoveSpeedRestrictions(champions);
-    const mpRestrictions = await parseMpRestrictions(champions);
-    const rangeRestrictions = await parseRangeRestrictions(champions);
+            const { error } = await supabase.from('restriction').insert(restriction);
+            if (error) console.log(error)
+            else console.log(`Restriction ${restriction.name} was inserted seeded successfully`)
+        } else {
 
-
-    return [...tagRestrictions, ...difficultyRestrictions, ...powerSourceRestrictions,
-        armorRestrictions, attackSpeedRestrictions, hpRestrictions,
-        moveSpeedRestrictions, mpRestrictions, rangeRestrictions]
+            if (restriction.hash !== data[0].hash) {
+                const { error } = await supabase.from('restriction')
+                    .update({ hash: restriction.hash, champion_list: restriction.champion_list }).eq('name', restriction.name);
+                if (error) console.log(error)
+                console.log(`restriction ${restriction.name} was updated`);
+            } else {
+                console.log(` Restriction ${restriction.name} is up to date`);
+            }
+        }
+    }
 }
+await seedRestrictions(restrictions);
