@@ -33,3 +33,10 @@ export type champion = {
     id: string;
     partype: string;
 } | undefined
+
+export type restriction = {
+    name: string;
+    display_name: string;
+    champion_list: string[];
+    hash: string;
+}

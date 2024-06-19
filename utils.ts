@@ -1,4 +1,14 @@
 import * as v from "https://deno.land/x/valibot@v0.31.1/mod.ts";
+import { encodeHex } from "jsr:@std/encoding/hex";
+
+import { restriction } from "./types.d.ts";
+
+export async function hashList(restriction: restriction): Promise<void> {
+    const listBuffer = new TextEncoder().encode(JSON.stringify(restriction.champion_list));
+    const hashBuffer = await crypto.subtle.digest("SHA-256", listBuffer);
+    restriction.hash = encodeHex(hashBuffer);
+}
+
 
 
 export function getFiles(inputFolder: string): string[] {
@@ -10,7 +20,7 @@ export function getFiles(inputFolder: string): string[] {
     return files;
 }
 
-export function getChampiontags(champions: unknown[]): { name: string; displayName: string; }[] {
+export function getChampiontags(champions: unknown[]): { name: string; display_name: string; }[] {
     const schema = v.object({
         tags: v.array(v.string())
     });
@@ -24,7 +34,7 @@ export function getChampiontags(champions: unknown[]): { name: string; displayNa
         }
     })
     const championTags = tagsArray.map(tag => {
-        return { name: tag, displayName: tag }
+        return { name: tag, display_name: tag }
     })
     return championTags;
 }
@@ -44,7 +54,7 @@ export function getChampionResources(champions: unknown[]) {
         }
     })
     const resourceArray = partypeArray.map(resource => {
-        return { name: resource, displayName: `Uses ${resource}` }
+        return { name: resource, display_name: `Uses ${resource}` }
     })
     return resourceArray;
 }
