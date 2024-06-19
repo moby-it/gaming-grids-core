@@ -1,6 +1,6 @@
 # Gaming Grids Core
 
-This repository serves 3 purposes:
+This repository serves 4 purposes:
 
 1. **image-filter:** Given a folder with League of Legends Champion Images, it
    filters it down to the images that have the suffix `_0.png`. This helps us
@@ -12,6 +12,11 @@ This repository serves 3 purposes:
 3. **champion-parser:** Given the `champion.json` file, it filters the
    champions' data down to the name and image_url which then inserts them to the
    `champion` supabase table.
+   
+4. **restriction-parser:** Given the `champion.json` file, it filters the
+  programmed restrictions containing the essential infromation (restriction name, display name,
+   list of champions and the list hash) to the
+   `restriction` supabase table.
 
 ## Image Filter
 
@@ -36,6 +41,12 @@ following steps:
    if it doesn't exist.
 3. Uploads any images that are **not already uploaded** on the supabase storage.
 
+### How to run
+
+Run the migrator by `deno task migrator`.
+
+---
+
 ## Champion Parser
 
 Inserts data to our `champion` table by reading the `champion.json` file,
@@ -48,9 +59,24 @@ necessary infromation (name,image url)
 
 ### Requirements
 
+Before running make sure you have the correct `SUPABASE_URL`, `SUPABASE_KEY` and `BUCKET_URL`
+in your .env file
+
+---
+
+## Restriction Parser
+
+Inserts data to our `restriction` table by reading the `champion.json` file,
+connecting to the database and mapping our champion data to keep only the
+necessary infromation (restriction name, display name, list of champions and the list hash)
+
+## How to run
+
+`deno task seedRestrictions`
+
+### Requirements
+
 Before running make sure you have the correct `SUPABASE_URL` and `SUPABASE_KEY`
 in your .env file
 
-### How to run
 
-Run the migrator by `deno task migrator`.
