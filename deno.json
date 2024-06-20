@@ -3,6 +3,17 @@
     "filter": "deno run --allow-read=. --allow-write=. tasks/imageFilter.ts",
     "migrate": "deno run --allow-read=.  --allow-write=. --allow-net tasks/imageMigrator.ts",
     "seedChampions": "deno run --allow-read=.  --allow-write=. --allow-net tasks/seedChampions.ts",
-    "seedRestrictions":"deno run --allow-read=.  --allow-write=. --allow-net tasks/seedRestrictions.ts"
+    "seedRestrictions": "deno run --allow-read=.  --allow-write=. --allow-net tasks/seedRestrictions.ts"
+  },
+  "imports": {
+    "valibot": "https://deno.land/x/valibot@v0.31.1/mod.ts",
+    "encodeHex":"jsr:@std/encoding/hex",
+    "supabase":"https://esm.sh/@supabase/supabase-js@2.41.1",
+    "path":"https://deno.land/std@0.221.0/path/mod.ts",
+    "mod":"https://deno.land/std@0.221.0/fs/exists.ts",
+    "env":"https://deno.land/std@0.221.0/dotenv/mod.ts"
+  },
+  "fmt": {
+    "lineWidth": 100
   }
 }

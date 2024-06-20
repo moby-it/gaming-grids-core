@@ -1,8 +1,8 @@
-import * as mod from "https://deno.land/std@0.221.0/fs/exists.ts";
-import { copyFiles } from "../copyFiles.ts";
-import { getFiles } from "../utils.ts";
+import * as mod from "mod";
+import { copyFiles } from "../lib/copyFiles.ts";
+import { getFiles } from "../lib/utils.ts";
 const inputFolder = "./input";
-const assets = 'assets'
+const assets = "assets";
 const championsFolder = "assets/champions";
 if (!mod.existsSync(assets)) {
   Deno.mkdirSync(assets);

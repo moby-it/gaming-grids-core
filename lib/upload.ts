@@ -1,4 +1,4 @@
-import { SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2.41.1";
+import { SupabaseClient } from "supabase";
 import { getFiles } from "./utils.ts";
 import {
   checkFileExists,
