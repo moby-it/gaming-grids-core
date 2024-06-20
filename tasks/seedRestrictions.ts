@@ -1,32 +1,35 @@
-import { getSupaBaseClient } from "../supabase.ts";
-import { restriction } from "../types.d.ts";
-import { getRestrictions } from "../utils.ts";
-const { data } = JSON.parse(await Deno.readTextFile('./assets/champion.json'));
-const champions = Object.entries(data).map(hero => hero[1]);
-const restrictions: restriction[] = await getRestrictions(champions);
+import { parseRestrictions } from "../lib/parseRestrictions.ts";
+import { getSupaBaseClient } from "../lib/supabase.ts";
+import { Champion, DbRestriction } from "../types.ts";
+import * as v from "valibot";
 
-async function seedRestrictions(
-    restrictions: restriction[])
-    : Promise<void> {
-    const supabase = await getSupaBaseClient();
-    for (const restriction of restrictions) {
-        const { data } = await supabase.from('restriction').select('hash').eq('name', restriction.name)
-        if (!data?.length) {
+const { data } = JSON.parse(await Deno.readTextFile("./assets/champion.json"));
+const { output: champions, success, issues } = v.safeParse(
+  v.array(Champion),
+  Object.entries(data).map((hero) => hero[1]),
+);
+if (!success) throw new Error("failed to parse champions" + issues);
+const restrictions: DbRestriction[] = await parseRestrictions(champions);
 
-            const { error } = await supabase.from('restriction').insert(restriction);
-            if (error) console.log(error)
-            else console.log(`Restriction ${restriction.name} was inserted seeded successfully`)
-        } else {
+const supabase = await getSupaBaseClient();
 
-            if (restriction.hash !== data[0].hash) {
-                const { error } = await supabase.from('restriction')
-                    .update({ hash: restriction.hash, champion_list: restriction.champion_list }).eq('name', restriction.name);
-                if (error) console.log(error)
-                console.log(`restriction ${restriction.name} was updated`);
-            } else {
-                console.log(` Restriction ${restriction.name} is up to date`);
-            }
-        }
+for (const r of restrictions) {
+  const { data } = await supabase.from("restriction").select("hash").eq("name", r.name);
+  if (!data?.length) {
+    const { error } = await supabase.from("restriction").insert(r);
+    if (error) console.log(error);
+    else console.log(`Restriction ${r.name} was inserted successfully`);
+  } else {
+    if (r.hash === data[0].hash) {
+      console.log(`Restriction ${r.name} is up to date`);
+      continue;
     }
+    const { error } = await supabase.from("restriction")
+      .update({ hash: r.hash, champion_list: r.champion_list }).eq(
+        "name",
+        r.name,
+      );
+    if (error) throw error;
+    console.log(`restriction ${r.name} was updated`);
+  }
 }
-await seedRestrictions(restrictions);
