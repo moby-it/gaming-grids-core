@@ -35,7 +35,7 @@ export async function handleUpload(
   if (!bucketExists) await createBucket(supabase, bucketName);
   const supaBaseImages = await getBucketFileData(supabase, bucketName);
 
-  const championsFolder = "./champions";
+  const championsFolder = "./assets/champions";
   const files = getFiles(championsFolder);
 
   for (const filename of files) {

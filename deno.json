@@ -1,8 +1,8 @@
 {
   "tasks": {
-    "filter": "deno run --allow-read=. --allow-write=. imageFilter.ts",
-    "migrate": "deno run --allow-read=.  --allow-write=. --allow-net imageMigrator.ts",
-    "seedChampions": "deno run --allow-read=.  --allow-write=. --allow-net seedChampions.ts",
-    "seedRestrictions":"deno run --allow-read=.  --allow-write=. --allow-net seedRestrictions.ts"
+    "filter": "deno run --allow-read=. --allow-write=. tasks/imageFilter.ts",
+    "migrate": "deno run --allow-read=.  --allow-write=. --allow-net tasks/imageMigrator.ts",
+    "seedChampions": "deno run --allow-read=.  --allow-write=. --allow-net tasks/seedChampions.ts",
+    "seedRestrictions":"deno run --allow-read=.  --allow-write=. --allow-net tasks/seedRestrictions.ts"
   }
 }

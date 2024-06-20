@@ -1,7 +1,7 @@
-import { getSupaBaseClient } from "./supabase.ts";
-import { restriction } from "./types.d.ts";
-import { getRestrictions } from "./utils.ts";
-const { data } = JSON.parse(await Deno.readTextFile('./champion.json'));
+import { getSupaBaseClient } from "../supabase.ts";
+import { restriction } from "../types.d.ts";
+import { getRestrictions } from "../utils.ts";
+const { data } = JSON.parse(await Deno.readTextFile('./assets/champion.json'));
 const champions = Object.entries(data).map(hero => hero[1]);
 const restrictions: restriction[] = await getRestrictions(champions);
 
