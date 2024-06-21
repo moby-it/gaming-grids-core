@@ -1,4 +1,4 @@
-import { SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2.41.1";
+import { SupabaseClient } from "supabase";
 import { getFiles } from "./utils.ts";
 import {
   checkFileExists,
@@ -35,7 +35,7 @@ export async function handleUpload(
   if (!bucketExists) await createBucket(supabase, bucketName);
   const supaBaseImages = await getBucketFileData(supabase, bucketName);
 
-  const championsFolder = "./champions";
+  const championsFolder = "./assets/champions";
   const files = getFiles(championsFolder);
 
   for (const filename of files) {
