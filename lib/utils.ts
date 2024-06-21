@@ -1,5 +1,5 @@
 import { encodeHex } from "encodeHex";
-import { Restriction } from "../types.ts";
+import { Restriction } from "../lib/types.ts";
 import {
   armorRestriction,
   assassinRestriction,

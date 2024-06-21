@@ -1,4 +1,4 @@
-import { Champion, Restriction } from "../../types.ts";
+import { Champion, Restriction } from "../types.ts";
 
 function parseArmor(champion: Champion): boolean {
   return champion.stats.armor <= 29;

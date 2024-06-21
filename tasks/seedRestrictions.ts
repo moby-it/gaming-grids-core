@@ -1,7 +1,7 @@
+import * as v from "valibot";
 import { parseRestrictions } from "../lib/parseRestrictions.ts";
 import { getSupaBaseClient } from "../lib/supabase.ts";
-import { Champion, DbRestriction } from "../types.ts";
-import * as v from "valibot";
+import { Champion } from "../lib/types.ts";
 
 const { data } = JSON.parse(await Deno.readTextFile("./assets/champion.json"));
 const { output: champions, success, issues } = v.safeParse(
@@ -9,7 +9,7 @@ const { output: champions, success, issues } = v.safeParse(
   Object.entries(data).map((hero) => hero[1]),
 );
 if (!success) throw new Error("failed to parse champions" + issues);
-const restrictions: DbRestriction[] = await parseRestrictions(champions);
+const restrictions = await parseRestrictions(champions);
 
 const supabase = await getSupaBaseClient();
 

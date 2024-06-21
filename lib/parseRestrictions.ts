@@ -1,4 +1,4 @@
-import { Champion, DbRestriction, Restriction } from "../types.ts";
+import { Champion, DbRestriction, Restriction } from "./types.ts";
 import { hashList } from "./utils.ts";
 import { getRestrictions } from "./utils.ts";
 export async function parseRestrictions(champions: Champion[]): Promise<DbRestriction[]> {
