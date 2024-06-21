@@ -5,6 +5,9 @@ export async function getSupaBaseClient(): Promise<SupabaseClient> {
   const env = await load();
   const url: string = env["SUPABASE_URL"];
   const key: string = env["SUPABASE_KEY"];
+  if (!url || !key) {
+    throw new Error("failed to initialize supabase client. url or key is missing from env");
+  }
   const supabase: SupabaseClient = createClient(url, key);
   return supabase;
 }

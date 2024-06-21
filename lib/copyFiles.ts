@@ -1,6 +1,6 @@
 import * as path from "path";
 
-export function copyFiles(
+export function copyChampionImages(
   files: string[],
   src: string,
   destination: string,

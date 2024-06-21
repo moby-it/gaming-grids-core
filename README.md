@@ -15,6 +15,10 @@ This repository serves 4 purposes:
    containing the essential infromation (restriction name, display name, list of champions and the
    list hash) to the `restriction` supabase table.
 
+## Requirements
+
+Before running make sure you have the correct `SUPABASE_URL` and `SUPABASE_KEY` in your .env file
+
 ## Image Filter
 
 Iterates a folder named `input` folder, which contains the wanted data from League of Legends Data
@@ -66,7 +70,3 @@ display name, list of champions and the list hash)
 ## How to run
 
 `deno task seedRestrictions`
-
-### Requirements
-
-Before running make sure you have the correct `SUPABASE_URL` and `SUPABASE_KEY` in your .env file

@@ -27,7 +27,7 @@ async function uploadFile(
   }
 }
 
-export async function handleUpload(
+export async function upload(
   supabase: SupabaseClient,
   bucketName: string,
 ): Promise<void> {
