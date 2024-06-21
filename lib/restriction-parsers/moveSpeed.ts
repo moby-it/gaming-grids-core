@@ -1,4 +1,4 @@
-import { Champion, Restriction } from "../../types.ts";
+import { Champion, Restriction } from "../types.ts";
 
 function moveSpeedParser(champion: Champion): boolean {
   return (champion.stats.move_speed >= 480);

@@ -1,7 +1,7 @@
 import * as v from "valibot";
 import { getSupaBaseClient } from "../lib/supabase.ts";
 import { load } from "env";
-import { Champion } from "../types.ts";
+import { Champion } from "../lib/types.ts";
 const env = await load();
 const { data } = JSON.parse(await Deno.readTextFile("./assets/champion.json"));
 const supabase = await getSupaBaseClient();

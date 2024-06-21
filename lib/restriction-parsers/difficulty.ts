@@ -1,4 +1,4 @@
-import { Champion, Restriction } from "../../types.ts";
+import { Champion, Restriction } from "../types.ts";
 
 function parseLowDifficulty(champion: Champion): boolean {
   return [0, 1, 2, 3].includes(champion.difficulty);
