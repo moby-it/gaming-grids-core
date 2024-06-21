@@ -1,19 +1,19 @@
-import { Champion, DbRestriction, Restriction } from "./types.ts";
+import { RESTRICTIONS } from "./restrictions.ts";
+import { Champion, DbRestriction } from "./types.ts";
 import { hashList } from "./utils.ts";
-import { getRestrictions } from "./utils.ts";
+
 export async function parseRestrictions(champions: Champion[]): Promise<DbRestriction[]> {
-  const restrictions: Restriction[] = getRestrictions();
   for (const champion of champions) {
-    for (const r of restrictions) {
+    for (const r of RESTRICTIONS) {
       if (r.operation(champion)) {
         r.champion_list.push(champion.name);
       }
     }
   }
-  for (const r of restrictions) {
+  for (const r of RESTRICTIONS) {
     r.hash = await hashList(r);
   }
-  return restrictions.map((r) => {
+  return RESTRICTIONS.map((r) => {
     return {
       name: r.name,
       display_name: r.display_name,
