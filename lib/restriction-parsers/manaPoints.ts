@@ -1,4 +1,4 @@
-import { Champion, Restriction } from "../../types.ts";
+import { Champion, Restriction } from "../types.ts";
 
 function mpParser(champion: Champion): boolean {
   return (champion.partype === "Mana" && champion.stats.mp >= 480);

@@ -1,4 +1,4 @@
-import { Champion, Restriction } from "../../types.ts";
+import { Champion, Restriction } from "../types.ts";
 
 function parseFighter(champion: Champion): boolean {
   return champion?.tags.includes("Fighter");

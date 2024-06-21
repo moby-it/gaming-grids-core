@@ -1,6 +1,6 @@
 import { parseRestrictions } from "../lib/parseRestrictions.ts";
 import { getSupaBaseClient } from "../lib/supabase.ts";
-import { Champion, DbRestriction } from "../types.ts";
+import { Champion, DbRestriction } from "../lib/types.ts";
 import * as v from "valibot";
 
 const { data } = JSON.parse(await Deno.readTextFile("./assets/champion.json"));
