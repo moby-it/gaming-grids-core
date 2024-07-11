@@ -7,7 +7,7 @@ function parseFury(champion: Champion): boolean {
   return champion.partype === "Fury";
 }
 function parseNone(champion: Champion): boolean {
-  return champion.partype === ("None" || "");
+  return champion.partype === "None" || champion.partype === "";
 }
 function parseEnergy(champion: Champion): boolean {
   return champion.partype === "Energy";
