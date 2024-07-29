@@ -16,7 +16,7 @@ export async function ensureBucketExists(
   const { data, error } = await supabase
     .storage
     .getBucket(bucketName);
-  if (error) console.log(error.message);
+  if (error) throw error
   if (data) return true;
   return false;
 }

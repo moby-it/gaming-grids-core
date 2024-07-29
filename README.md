@@ -52,7 +52,7 @@ and mapping our champion data to keep only the necessary infromation (name,image
 
 ### Requirements
 
-Before running make sure you have the correct `SUPABASE_URL`, `SUPABASE_KEY` and `BUCKET_URL` in
+Before running make sure you have the correct `SUPABASE_URL`and `SUPABASE_KEY` in
 your .env file
 
 ---
