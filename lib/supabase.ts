@@ -1,7 +1,7 @@
 import { createClient, SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2.41.1";
 import { load } from "https://deno.land/std@0.221.0/dotenv/mod.ts";
 
-export async function getSupaBaseClient(): Promise<SupabaseClient> {
+export async function getSupabaseClient(): Promise<SupabaseClient> {
   const env = await load();
   const url: string = env["SUPABASE_URL"];
   const key: string = env["SUPABASE_KEY"];

@@ -5,7 +5,7 @@ function parseHp(champion: Champion): boolean {
 }
 
 export const hpRestriction: Restriction = {
-  name: "hp<550",
+  name: "hp_lt_550",
   champion_list: [],
   hash: "",
   display_name: "Hp < 550",

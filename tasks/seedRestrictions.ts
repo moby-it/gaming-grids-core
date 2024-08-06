@@ -1,5 +1,5 @@
 import { parseRestrictions } from "../lib/parseRestrictions.ts";
-import { getSupaBaseClient } from "../lib/supabase.ts";
+import { getSupabaseClient } from "../lib/supabase.ts";
 import { Champion, DbRestriction } from "../lib/types.ts";
 import * as v from "valibot";
 
@@ -11,7 +11,7 @@ const { output: champions, success, issues } = v.safeParse(
 if (!success) throw new Error("failed to parse champions" + issues);
 const restrictions: DbRestriction[] = await parseRestrictions(champions);
 
-const supabase = await getSupaBaseClient();
+const supabase = await getSupabaseClient();
 
 for (const r of restrictions) {
   const { data } = await supabase.from("restriction").select("hash").eq("name", r.name);

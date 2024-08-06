@@ -1,8 +1,8 @@
 import * as v from "valibot";
-import { getSupaBaseClient } from "../lib/supabase.ts";
+import { getSupabaseClient } from "../lib/supabase.ts";
 import { Champion } from "../lib/types.ts";
 const { data } = JSON.parse(await Deno.readTextFile("./assets/champion.json"));
-const supabase = await getSupaBaseClient();
+const supabase = await getSupabaseClient();
 const { output: champions, success, issues } = v.safeParse(
   v.array(Champion),
   Object.entries(data).map((hero) => hero[1]),

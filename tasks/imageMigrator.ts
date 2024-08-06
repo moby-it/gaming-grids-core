@@ -1,7 +1,7 @@
-import { getSupaBaseClient } from "../lib/supabase.ts";
+import { getSupabaseClient } from "../lib/supabase.ts";
 import { handleUpload } from "../lib/upload.ts";
 
 const bucketName = "champions";
-const supabase = await getSupaBaseClient();
+const supabase = await getSupabaseClient();
 
 await handleUpload(supabase, bucketName);

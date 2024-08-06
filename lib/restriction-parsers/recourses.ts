@@ -14,28 +14,28 @@ function parseEnergy(champion: Champion): boolean {
 }
 
 export const usesFuryRestriction: Restriction = {
-  name: "fury",
+  name: "uses_fury",
   champion_list: [],
   hash: "",
   display_name: "Uses fury",
   operation: parseFury,
 };
 export const usesNoneRestriction: Restriction = {
-  name: "none",
+  name: "uses_none",
   champion_list: [],
   hash: "",
   display_name: "Uses no resource",
   operation: parseNone,
 };
 export const usesEnergyRestriction: Restriction = {
-  name: "energy",
+  name: "uses_energy",
   champion_list: [],
   hash: "",
   display_name: "Uses energy",
   operation: parseEnergy,
 };
 export const usesManaRestriction: Restriction = {
-  name: "mana",
+  name: "uses_mana",
   champion_list: [],
   hash: "",
   display_name: "Uses mana",
