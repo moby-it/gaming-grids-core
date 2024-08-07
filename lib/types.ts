@@ -35,7 +35,6 @@ export const Champion = v.pipe(
 export type Champion = v.InferOutput<typeof Champion>;
 
 export type Restriction = {
-  name: string;
   display_name: string;
   champion_list: string[];
   hash: string;

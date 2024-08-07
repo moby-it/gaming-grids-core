@@ -15,7 +15,6 @@ export async function parseRestrictions(champions: Champion[]): Promise<DbRestri
   }
   return restrictions.map((r) => {
     return {
-      name: r.name,
       display_name: r.display_name,
       champion_list: r.champion_list,
       hash: r.hash,
