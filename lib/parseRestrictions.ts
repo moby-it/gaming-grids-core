@@ -6,7 +6,7 @@ export async function parseRestrictions(champions: Champion[]): Promise<DbRestri
   for (const champion of champions) {
     for (const r of restrictions) {
       if (r.operation(champion)) {
-        r.champion_list.push(champion.name);
+        r.champion_list.push(champion.id);
       }
     }
   }
