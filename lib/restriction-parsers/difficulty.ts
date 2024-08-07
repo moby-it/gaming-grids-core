@@ -10,24 +10,20 @@ function parseHighDifficulty(champion: Champion): boolean {
   return [8, 9, 10].includes(champion.difficulty);
 }
 export const lowDifficultyRestriction: Restriction = {
-  name: "low_difficulty",
   champion_list: [],
   hash: "",
-  display_name: "Low difficulty",
+  name: "Low difficulty",
   operation: parseLowDifficulty,
 };
 export const mediumDifficultyRestriction: Restriction = {
-  name: "medium_difficulty",
   champion_list: [],
   hash: "",
-  display_name: "Medium difficulty",
+  name: "Medium difficulty",
   operation: parseMediumDifficulty,
 };
 export const highDifficultyRestriction: Restriction = {
-  name: "high_difficulty",
   champion_list: [],
   hash: "",
-  display_name: "High difficulty",
+  name: "High difficulty",
   operation: parseHighDifficulty,
 };
-

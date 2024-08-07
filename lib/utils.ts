@@ -47,7 +47,7 @@ export function getRestrictions() {
 }
 export async function hashList(restriction: Restriction): Promise<string> {
   const listBuffer = new TextEncoder().encode(
-    JSON.stringify(restriction.champion_list),
+    JSON.stringify({ name: restriction.name, champion_list: restriction.champion_list }),
   );
   const hashBuffer = await crypto.subtle.digest("SHA-256", listBuffer);
   return encodeHex(hashBuffer);

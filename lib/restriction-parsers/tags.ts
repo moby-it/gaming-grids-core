@@ -20,46 +20,40 @@ function parseTank(champion: Champion): boolean {
 }
 
 export const fighterRestriction: Restriction = {
-  name: "fighter",
+  name: "Fighter",
   champion_list: [],
   hash: "",
-  display_name: "Fighter",
   operation: parseFighter,
 };
 export const mageRestriction: Restriction = {
-  name: "mage",
+  name: "Mage",
   champion_list: [],
   hash: "",
-  display_name: "Mage",
   operation: parseMage,
 };
 export const supportRestriction: Restriction = {
-  name: "support",
+  name: "Support",
   champion_list: [],
   hash: "",
-  display_name: "Support",
   operation: parseSupport,
 };
 
 export const assassinRestriction: Restriction = {
-  name: "assassin",
+  name: "Assassin",
   champion_list: [],
   hash: "",
-  display_name: "Assassin",
   operation: parseAssassin,
 };
 export const marksmanRestriction: Restriction = {
-  name: "marksman",
+  name: "Marksman",
   champion_list: [],
   hash: "",
-  display_name: "Marksman",
   operation: parseMarksman,
 };
 
 export const tankRestriction: Restriction = {
-  name: "tank",
+  name: "Tank",
   champion_list: [],
   hash: "",
-  display_name: "Tank",
   operation: parseTank,
 };

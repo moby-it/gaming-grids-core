@@ -5,9 +5,8 @@ function parseArmor(champion: Champion): boolean {
 }
 
 export const armorRestriction: Restriction = {
-  name: "armor_lte_29",
   champion_list: [],
   hash: "",
-  display_name: "Armor <= 29",
+  name: "Armor <= 29",
   operation: parseArmor,
 };
